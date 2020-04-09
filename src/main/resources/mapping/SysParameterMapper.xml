@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dev.bond.mapper.SysParameterMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dev.bond.entity.SysParameter">
+        <id column="id" property="id" />
+        <result column="TRADE_START_TIME" property="tradeStartTime" />
+        <result column="TRADE_END_TIME" property="tradeEndTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TRADE_START_TIME AS tradeStartTime, TRADE_END_TIME AS tradeEndTime, id
+    </sql>
+
+</mapper>

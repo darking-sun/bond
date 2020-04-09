@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dev.bond.mapper.AdminMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dev.bond.entity.Admin">
+        <id column="ADMIN_NAME" property="adminName" />
+        <result column="ADMIN_PASSWORD" property="adminPassword" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ADMIN_NAME AS adminName, ADMIN_PASSWORD AS adminPassword
+    </sql>
+
+    <select id="findByAdminName" resultType="com.dev.bond.entity.Admin">
+        select * from admin where ADMIN_NAME = #{adminName}
+    </select>
+
+    <select id="selectByAdminName" parameterType="com.dev.bond.entity.Admin"
+            resultType="com.test.mybatisplus.pojo.User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM admin
+        WHERE adminName=#{adminName}
+    </select>
+
+</mapper>

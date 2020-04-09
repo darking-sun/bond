@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dev.bond.mapper.EnumMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dev.bond.entity.Enum">
+        <result column="ENUM_NAME" property="enumName" />
+        <result column="ENUM_VALUE" property="enumValue" />
+        <result column="ENUM_TYPE" property="enumType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ENUM_NAME AS enumName, ENUM_VALUE AS enumValue, ENUM_TYPE AS enumType
+    </sql>
+    <select id="selectServiceFeeByEnumName" parameterType="java.lang.String" resultType="com.dev.bond.entity.Enum">
+        select
+        <include refid="Base_Column_List"/>
+        from enum where ENUM_NAME = #{enumName,jdbcType=VARCHAR}
+    </select>
+    <insert id="insertService" parameterType="com.dev.bond.entity.Enum" >
+        insert into enum
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="enumName != null">
+                ENUM_NAME,
+            </if>
+            <if test="enumValue != null">
+                ENUM_VALUE,
+            </if>
+            <if test="enumType != null">
+                ENUM_TYPE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="enumName != null">
+                #{enumName,jdbcType=VARCHAR},
+            </if>
+            <if test="enumValue != null">
+                #{enumValue,jdbcType=VARCHAR},
+            </if>
+            <if test="enumType != null">
+                #{enumType,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateService" parameterType="com.dev.bond.entity.Enum">
+      update enum
+      <trim prefix="set" suffixOverrides=",">
+          <if test="enumValue != null">ENUM_VALUE = #{enumValue,jdbcType=VARCHAR} ,</if>
+      </trim>
+      WHERE ENUM_NAME = #{enumName,jdbcType=VARCHAR} AND ENUM_TYPE = #{enumType,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="deleteService">
+        delete from enum
+        WHERE ENUM_NAME = #{enumName,jdbcType=VARCHAR} AND ENUM_TYPE = #{enumType,jdbcType=VARCHAR}
+    </delete>
+
+    <!--if exists (select * from tableName where conditions) select '1' else select '0'-->
+
+    <select id="valiteService" parameterType="com.dev.bond.entity.Enum" resultType="java.lang.Integer">
+        select   count(*)    from enum
+        WHERE ENUM_NAME = #{enumName,jdbcType=VARCHAR} and ENUM_TYPE = #{enumType,jdbcType=VARCHAR}
+    </select>
+</mapper>

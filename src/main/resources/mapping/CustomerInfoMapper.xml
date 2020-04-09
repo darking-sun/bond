@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dev.bond.mapper.CustomerInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dev.bond.entity.CustomerInfo">
+        <id column="CERTIFICATE_NO" property="certificateNo" />
+        <result column="CUSTOMER_TYPE" property="customerType" />
+        <result column="CERTIFICATE_TYPE" property="certificateType" />
+        <result column="BANK_ACCOUNT_OPENING" property="bankAccountOpening" />
+        <result column="BANK_ACCOUNT_NUMBER" property="bankAccountNumber" />
+        <result column="CUSTOMER_NAME" property="customerName" />
+        <result column="CUSTOMER_SEX" property="customerSex" />
+        <result column="CUSTOMER_MOBILE" property="customerMobile" />
+        <result column="CUSTOMER_EMAIL" property="customerEmail" />
+        <result column="CUSTOMER_ADDRESS" property="customerAddress" />
+        <result column="CUSTOMER_LEVEL" property="customerLevel" />
+        <result column="ACCOUNT_PASSWORD" property="accountPassword" />
+        <result column="ACCOUNT_STATUS" property="accountStatus" />
+        <result column="OTHER" property="other" />
+        <result column="ACCOUNT_ID" property="accountId" />
+        <result column="SERVICE_FEE" property="serviceFee" />
+        <result column="DATE" property="openDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CUSTOMER_TYPE AS customerType, CERTIFICATE_TYPE AS certificateType, CERTIFICATE_NO AS certificateNo, BANK_ACCOUNT_OPENING AS bankAccountOpening, BANK_ACCOUNT_NUMBER AS bankAccountNumber, CUSTOMER_NAME AS customerName, CUSTOMER_SEX AS customerSex, CUSTOMER_MOBILE AS customerMobile, CUSTOMER_EMAIL AS customerEmail, CUSTOMER_ADDRESS AS customerAddress, CUSTOMER_LEVEL AS customerLevel, ACCOUNT_PASSWORD AS accountPassword, ACCOUNT_STATUS AS accountStatus, OTHER AS other, ACCOUNT_ID AS accountId, SERVICE_FEE AS serviceFee, DATE AS date
+    </sql>
+
+</mapper>

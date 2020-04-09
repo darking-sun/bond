@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dev.bond.mapper.CustomerBondMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dev.bond.entity.OrderRecord">
+        <id column="ACCOUNT_ID" property="accountId" />
+        <result column="TOTAL_SHARE" property="totalShare" />
+        <result column="TRADE_SHARE" property="tradeShare" />
+        <result column="FROZEN_SHARE" property="frozenShare" />
+        <result column="BOND_CODE" property="bondCode" />
+        <result column="BOND_NAME" property="bondName" />
+        <result column="ENTITY_ID" property="entityId" />
+        <result column="ENTITY_NAME" property="entityName" />
+        <result column="BOND_NAME" property="bondName" />
+        <result column="BOND_END_DATE" property="bondEndDate" />
+        <result column="BOND_RATE" property="bondRate" />
+        <result column="BOND_BUY_PRICE" property="bondBuyPrice" />
+        <result column="BOND_SELL_PRICE" property="bondSellPrice" />
+        <result column="BOND_PRICE" property="bondPrice" />
+        <result column="DAY_COUNT" property="dayCount" />
+        <result column="BOND_INTEREST_PERIOD" property="bondInterestPeriod" />
+        <result column="BOND_ISSUE_PRICE" property="bondIssuePrice" />
+        <result column="BOND_INTEREST_START_DATE" property="bondInterestStartDate" />
+        <result column="BOND_ISSUE_DATE" property="bondIssueDate" />
+        <result column="BOND_QUALITY" property="bondQuality" />
+        <result column="BOND_LEVEL" property="bondLevel" />
+        <result column="ENTITY_ID" property="entityId" />
+        <result column="ENTITY_NAME" property="entityName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TOTAL_SHARE AS totalShare, ACCOUNT_ID AS accountId, TRADE_SHARE AS tradeShare, FROZEN_SHARE AS frozenShare, BOND_CODE AS bondCode, BOND_NAME AS bondName, ENTITY_ID AS entityId, ENTITY_NAME AS entityName
+    </sql>
+
+    <select id="selectBondList" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select A.*,B.* from customer_bond A left join bond_info B on
+        A.BOND_CODE = B.BOND_CODE where 1=1
+        <if test="accountId != null">
+            and ACCOUNT_ID = #{accountId,jdbcType = VARCHAR}
+        </if>
+    </select>
+</mapper>

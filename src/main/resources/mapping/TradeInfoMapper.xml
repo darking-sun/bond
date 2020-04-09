@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dev.bond.mapper.TradeInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dev.bond.entity.TradeInfo">
+        <id column="BOND_CODE" property="bondCode" />
+        <result column="BOND_NAME" property="bondName" />
+        <result column="BOND_END_DATE" property="bondEndDate" />
+        <result column="BOND_RATE" property="bondRate" />
+        <result column="BOND_BUY_PRICE" property="bondBuyPrice" />
+        <result column="BOND_SELL_PRICE" property="bondSellPrice" />
+        <result column="BOND_PRICE" property="bondPrice" />
+        <result column="DAY_COUNT" property="dayCount" />
+        <result column="BOND_INTEREST_PERIOD" property="bondInterestPeriod" />
+        <result column="BOND_ISSUE_PRICE" property="bondIssuePrice" />
+        <result column="BOND_INTEREST_START_DATE" property="bondInterestStartDate" />
+        <result column="BOND_ISSUE_DATE" property="bondIssueDate" />
+        <result column="BOND_QUALITY" property="bondQuality" />
+        <result column="BOND_LEVEL" property="bondLevel" />
+        <result column="CUSTOMER_TYPE" property="customerType" />
+        <result column="CERTIFICATE_TYPE" property="certificateType" />
+        <result column="CERTIFICATE_NO" property="certificateNo" />
+        <result column="BANK_ACCOUNT_OPENING" property="bankAccountOpening" />
+        <result column="BANK_ACCOUNT_NUMBER" property="bankAccountNumber" />
+        <result column="CUSTOMER_NAME" property="customerName" />
+        <result column="CUSTOMER_SEX" property="customerSex" />
+        <result column="CUSTOMER_MOBILE" property="customerMobile" />
+        <result column="CUSTOMER_EMAIL" property="customerEmail" />
+        <result column="CUSTOMER_ADDRESS" property="customerAddress" />
+        <result column="CUSTOMER_LEVEL" property="customerLevel" />
+        <result column="ACCOUNT_PASSWORD" property="accountPassword" />
+        <result column="ACCOUNT_STATUS" property="accountStatus" />
+        <result column="OTHER" property="other" />
+        <result column="ACCOUNT_ID" property="accountId" />
+        <result column="SERVICE_FEE" property="serviceFee" />
+        <result column="DATE" property="date" />
+        <result column="BOND_SHARE" property="bondShare" />
+        <result column="BOND_AMOUNT" property="bondAmount" />
+        <result column="TOTAL_AMOUNT" property="totalAmount" />
+        <result column="ENTITY_ID" property="entityId" />
+        <result column="ENTITY_NAME" property="entityName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        BOND_CODE AS bondCode, BOND_NAME AS bondName, BOND_END_DATE AS bondEndDate, BOND_RATE AS bondRate, BOND_BUY_PRICE AS bondBuyPrice, BOND_SELL_PRICE AS bondSellPrice, BOND_PRICE AS bondPrice, DAY_COUNT AS dayCount, BOND_INTEREST_PERIOD AS bondInterestPeriod, BOND_ISSUE_PRICE AS bondIssuePrice, BOND_INTEREST_START_DATE AS bondInterestStartDate, BOND_ISSUE_DATE AS bondIssueDate, BOND_QUALITY AS bondQuality, BOND_LEVEL AS bondLevel, CUSTOMER_TYPE AS customerType, CERTIFICATE_TYPE AS certificateType, CERTIFICATE_NO AS certificateNo, BANK_ACCOUNT_OPENING AS bankAccountOpening, BANK_ACCOUNT_NUMBER AS bankAccountNumber, CUSTOMER_NAME AS customerName, CUSTOMER_SEX AS customerSex, CUSTOMER_MOBILE AS customerMobile, CUSTOMER_EMAIL AS customerEmail, CUSTOMER_ADDRESS AS customerAddress, CUSTOMER_LEVEL AS customerLevel, ACCOUNT_PASSWORD AS accountPassword, ACCOUNT_STATUS AS accountStatus, OTHER AS other, ACCOUNT_ID AS accountId, SERVICE_FEE AS serviceFee, DATE AS date, BOND_SHARE AS bondShare, BOND_AMOUNT AS bondAmount, TOTAL_AMOUNT AS totalAmount, ENTITY_ID AS entityId, ENTITY_NAME AS entityName
+    </sql>
+
+</mapper>

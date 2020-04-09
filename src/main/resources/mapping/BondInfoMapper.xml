@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dev.bond.mapper.BondInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dev.bond.entity.BondInfo">
+        <id column="BOND_CODE" property="bondCode" />
+        <result column="BOND_NAME" property="bondName" />
+        <result column="BOND_END_DATE" property="bondEndDate" />
+        <result column="BOND_RATE" property="bondRate" />
+        <result column="BOND_BUY_PRICE" property="bondBuyPrice" />
+        <result column="BOND_SELL_PRICE" property="bondSellPrice" />
+        <result column="BOND_PRICE" property="bondPrice" />
+        <result column="DAY_COUNT" property="dayCount" />
+        <result column="BOND_INTEREST_PERIOD" property="bondInterestPeriod" />
+        <result column="BOND_ISSUE_PRICE" property="bondIssuePrice" />
+        <result column="BOND_INTEREST_START_DATE" property="bondInterestStartDate" />
+        <result column="BOND_ISSUE_DATE" property="bondIssueDate" />
+        <result column="BOND_QUALITY" property="bondQuality" />
+        <result column="BOND_LEVEL" property="bondLevel" />
+        <result column="ENTITY_ID" property="entityId" />
+        <result column="ENTITY_NAME" property="entityName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        BOND_CODE AS bondCode, BOND_NAME AS bondName, BOND_END_DATE AS bondEndDate, BOND_RATE AS bondRate, BOND_BUY_PRICE AS bondBuyPrice, BOND_SELL_PRICE AS bondSellPrice, BOND_PRICE AS bondPrice, DAY_COUNT AS dayCount, BOND_INTEREST_PERIOD AS bondInterestPeriod, BOND_ISSUE_PRICE AS bondIssuePrice, BOND_INTEREST_START_DATE AS bondInterestStartDate, BOND_ISSUE_DATE AS bondIssueDate, BOND_QUALITY AS bondQuality, BOND_LEVEL AS bondLevel, ENTITY_ID AS entityId, ENTITY_NAME AS entityName
+    </sql>
+
+</mapper>

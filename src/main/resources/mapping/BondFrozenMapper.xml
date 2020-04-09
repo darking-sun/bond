@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dev.bond.mapper.BondFrozenMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dev.bond.entity.BondFrozen">
+        <id column="BOND_CODE" property="bondCode" />
+        <result column="BOND_NAME" property="bondName" />
+        <result column="BOND_SHARE" property="bondShare" />
+        <result column="BOND_AMOUNT" property="bondAmount" />
+        <result column="ACCOUNT_ID" property="accountId" />
+        <result column="ENTITY_ID" property="entityId" />
+        <result column="ENTITY_NAME" property="entityName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        BOND_CODE AS bondCode, BOND_NAME AS bondName, BOND_SHARE AS bondShare, BOND_AMOUNT AS bondAmount, ACCOUNT_ID AS accountId, ENTITY_ID AS entityId, ENTITY_NAME AS entityName
+    </sql>
+
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dev.bond.mapper.EntityLimitMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dev.bond.entity.EntityLimit">
+        <id column="ENTITY_ID" property="entityId" />
+        <result column="BOND_CODE" property="bondCode" />
+        <result column="TOTAL_SHARE" property="totalShare" />
+        <result column="SALE_SHARE" property="saleShare" />
+        <result column="BOND_NAME" property="bondName" />
+        <result column="ENTITY_NAME" property="entityName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ENTITY_ID AS entityId, BOND_CODE AS bondCode, TOTAL_SHARE AS totalShare, SALE_SHARE AS saleShare, BOND_NAME AS bondName, ENTITY_NAME AS entityName
+    </sql>
+
+</mapper>
