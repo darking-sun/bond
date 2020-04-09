@@ -58,6 +58,7 @@ public class CustomerInfoController {
 
 
     }
+
     @CrossOrigin
     @RequestMapping(value = "api/queryPassword",method = RequestMethod.POST)
     @ResponseBody
