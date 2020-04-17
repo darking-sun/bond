@@ -5,10 +5,13 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.dev.bond.entity.*;
 import com.dev.bond.result.Result;
 import com.dev.bond.service.*;
+import com.dev.bond.util.tradeInfoInsert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -47,25 +50,64 @@ public class TradeInfoController {
         String bondShare = queryData.get("bondShare");
         BigDecimal orderShare = new BigDecimal(bondShare);
         CustomerInfo customerInfo = customerInfoService.selectOne(new EntityWrapper<CustomerInfo>().eq("ACCOUNT_ID", accountID));
-        BondInfo bondInfo = bondInfoService.selectOne(new EntityWrapper<BondInfo>().eq("BOND_CODE", bondCode).eq("ENTITY_ID", entityId));
-        EntityLimit entityLimit = entityLimitService.selectOne(new EntityWrapper<EntityLimit>().eq("BOND_CODE", bondCode).eq("ENTITY_ID", entityId));
-        CustomerLimit customerLimit = customerLimitService.selectOne(new EntityWrapper<CustomerLimit>().eq("ACCOUNT_ID", accountID));
-        CustomerBond customerBond = customerBondService.selectOne(new EntityWrapper<CustomerBond>().eq("ACCOUNT_ID", accountID));
-        BigDecimal useShare = entityLimit.getTotalShare().subtract(entityLimit.getSaleShare());
-        BigDecimal customerUseShare = customerLimit.getTotalShare().subtract(customerLimit.getBuyShare());
-        TradeInfo tradeInfo = new TradeInfo();
-        if(orderShare.compareTo(useShare) > 0){
-            return new Result(201, "购买债券额度超出机构可售额度");
-        }else  if(orderShare.compareTo(customerUseShare) > 0){
-            return new Result(202, "购买债券额度超出个人可购额度");
+        if (!customerInfo.getAccountStatus().equals("NORMAL")){
+            return new Result(201,"账户状态异常，不可以交易");
         }else {
-            customerBond.setTotalShare(customerBond.getTotalShare().add(orderShare));
-            customerBond.setFrozenShare(customerBond.getFrozenShare().add(orderShare));
-            entityLimit.setSaleShare(entityLimit.getSaleShare().add(orderShare));
-            customerBondService.update(customerBond,new EntityWrapper<CustomerBond>().eq("ACCOUNT_ID",accountID).eq("BOND_CODE",bondCode));
-            entityLimitService.update(entityLimit,new EntityWrapper<EntityLimit>().eq("ENTITY_ID",entityId).eq("BOND_CODE",bondCode));
-            return new Result(200, "申购债券成功");
+            BondInfo bondInfo = bondInfoService.selectOne(new EntityWrapper<BondInfo>().eq("BOND_CODE", bondCode).eq("ENTITY_ID", entityId));
+            EntityLimit entityLimit = entityLimitService.selectOne(new EntityWrapper<EntityLimit>().eq("BOND_CODE", bondCode).eq("ENTITY_ID", entityId));
+            CustomerLimit customerLimit = customerLimitService.selectOne(new EntityWrapper<CustomerLimit>().eq("ACCOUNT_ID", accountID));
+            CustomerBond customerBond = customerBondService.selectOne(new EntityWrapper<CustomerBond>().eq("ACCOUNT_ID", accountID).eq("BOND_CODE", bondCode));
+
+                BigDecimal useShare = entityLimit.getTotalShare().subtract(entityLimit.getSaleShare());
+                BigDecimal customerUseShare = customerLimit.getTotalShare().subtract(customerLimit.getBuyShare());
+                TradeInfo tradeInfo = new TradeInfo();
+                if(orderShare.compareTo(useShare) > 0){
+                    return new Result(201, "购买债券额度超出机构可售额度");
+                }else  if(orderShare.compareTo(customerUseShare) > 0){
+                    return new Result(202, "购买债券额度超出个人可购额度");
+                }else {
+                    if(customerBond == null){
+                        CustomerBond customerBond1 = new CustomerBond();
+                        customerBond1.setTotalShare(orderShare);
+                        customerBond1.setFrozenShare(orderShare);
+                        customerBond1.setTradeShare(new BigDecimal("0"));
+                        customerBond1.setEntityName(entityLimit.getEntityName());
+                        customerBond1.setEntityId(entityId);
+                        customerBond1.setBondCode(bondCode);
+                        customerBond1.setBondName(bondInfo.getBondName());
+                        customerBond1.setAccountId(accountID);
+                        customerBondService.insert(customerBond1);
+                    }else{
+                        customerBond.setTotalShare(customerBond.getTotalShare().add(orderShare));
+                        customerBond.setFrozenShare(customerBond.getFrozenShare().add(orderShare));
+                        customerBondService.update(customerBond,new EntityWrapper<CustomerBond>().eq("ACCOUNT_ID",accountID).eq("BOND_CODE",bondCode));
+
+                    }
+                  customerLimit.setBuyShare(customerLimit.getBuyShare().add(orderShare));
+                    customerLimitService.updateById(customerLimit);
+                    entityLimit.setSaleShare(entityLimit.getSaleShare().add(orderShare));
+                    entityLimitService.update(entityLimit,new EntityWrapper<EntityLimit>().eq("ENTITY_ID",entityId).eq("BOND_CODE",bondCode));
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+                    String datetime = simpleDateFormat.format(new Date());
+                    HashMap<String, String> hashMap = new HashMap<>();
+                    hashMap.put("accountId", accountID);
+                    hashMap.put("tradeType", "债券申购");
+                    hashMap.put("bondCode",bondCode);
+//                    EnumController enumController = (EnumController) SpringUtil.getBean(EnumController.class);
+//                    String serviceFee = (String) enumController.getService(hashMap).getData();
+                    hashMap.put("serviceFee", queryData.get("serviceFee"));
+                    hashMap.put("date", datetime);//申购时间
+                    hashMap.put("bondShare", queryData.get("bondShare"));
+                    hashMap.put("bondAmount", queryData.get("bondAmount"));
+                    hashMap.put("totalAmount",queryData.get("totalAmount"));
+                    tradeInfoInsert tradeInfoInsert = new tradeInfoInsert();
+                    tradeInfoInsert.insertTradeInfo(hashMap);
+                    return new Result(200, "申购债券成功");
+                }
+
+
         }
+
 
     }
 
@@ -90,7 +132,7 @@ public class TradeInfoController {
         }
         BigDecimal useShare = entityLimit.getTotalShare().subtract(entityLimit.getSaleShare());
 
-        BigDecimal customerUseShare = customerLimit.getTotalShare().subtract(customerToatlShare.add(orderShare));
+        BigDecimal customerUseShare = customerLimit.getTotalShare().subtract(customerToatlShare);
         if(orderShare.compareTo(useShare) > 0){
             return new Result(201, "购买债券额度超出机构可售额度");
         }else  if(orderShare.compareTo(customerUseShare) > 0){

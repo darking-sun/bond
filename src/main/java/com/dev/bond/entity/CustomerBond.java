@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -29,7 +30,7 @@ public class CustomerBond extends Model<CustomerBond> {
     /**
      * 托管账户号
      */
-    @TableId("ACCOUNT_ID")
+    @TableField("ACCOUNT_ID")
     private String accountId;
     /**
      * 可交易份额
@@ -49,6 +50,11 @@ public class CustomerBond extends Model<CustomerBond> {
     private String entityId;
     @TableField("ENTITY_NAME")
     private String entityName;
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
 
     public BigDecimal getTotalShare() {
@@ -124,21 +130,31 @@ public class CustomerBond extends Model<CustomerBond> {
     }
 
     @Override
-    protected Serializable pkVal() {
-        return this.accountId;
+    public String toString() {
+        return "CustomerBond{" +
+                "totalShare=" + totalShare +
+                ", accountId='" + accountId + '\'' +
+                ", tradeShare=" + tradeShare +
+                ", frozenShare=" + frozenShare +
+                ", bondCode='" + bondCode + '\'' +
+                ", bondName='" + bondName + '\'' +
+                ", entityId='" + entityId + '\'' +
+                ", entityName='" + entityName + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
-    public String toString() {
-        return "CustomerBond{" +
-        ", totalShare=" + totalShare +
-        ", accountId=" + accountId +
-        ", tradeShare=" + tradeShare +
-        ", frozenShare=" + frozenShare +
-        ", bondCode=" + bondCode +
-        ", bondName=" + bondName +
-        ", entityId=" + entityId +
-        ", entityName=" + entityName +
-        "}";
+    protected Serializable pkVal() {
+        return this.id;
     }
+
 }

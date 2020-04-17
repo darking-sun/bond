@@ -4,7 +4,8 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.dev.bond.entity.CustomerInfo">
-        <id column="CERTIFICATE_NO" property="certificateNo" />
+        <id column="ACCOUNT_ID" property="accountId" />
+        <result column="CERTIFICATE_NO" property="certificateNo" />
         <result column="CUSTOMER_TYPE" property="customerType" />
         <result column="CERTIFICATE_TYPE" property="certificateType" />
         <result column="BANK_ACCOUNT_OPENING" property="bankAccountOpening" />
@@ -18,9 +19,8 @@
         <result column="ACCOUNT_PASSWORD" property="accountPassword" />
         <result column="ACCOUNT_STATUS" property="accountStatus" />
         <result column="OTHER" property="other" />
-        <result column="ACCOUNT_ID" property="accountId" />
         <result column="SERVICE_FEE" property="serviceFee" />
-        <result column="DATE" property="openDate" />
+        <result column="DATE" property="date" />
     </resultMap>
 
     <!-- 通用查询结果列 -->

@@ -4,38 +4,44 @@ import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wzj123
- * @since 2020-03-16
+ * @since 2020-04-17
  */
 @TableName("trade_info")
 public class TradeInfo extends Model<TradeInfo> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId("BOND_CODE")
+    /**
+     * 债券代码
+     */
+    @TableField("BOND_CODE")
     private String bondCode;
+    /**
+     * 债券名称
+     */
     @TableField("BOND_NAME")
     private String bondName;
     /**
      * 债券到期日
      */
     @TableField("BOND_END_DATE")
-    private Date bondEndDate;
+    private String bondEndDate;
     /**
      * 债券利率
      */
     @TableField("BOND_RATE")
-    private String bondRate;
+    private BigDecimal bondRate;
     /**
      * 债券买入净价
      */
@@ -45,7 +51,7 @@ public class TradeInfo extends Model<TradeInfo> {
      * 债券卖出净价
      */
     @TableField("BOND_SELL_PRICE")
-    private String bondSellPrice;
+    private BigDecimal bondSellPrice;
     /**
      * 债券面值
      */
@@ -70,19 +76,25 @@ public class TradeInfo extends Model<TradeInfo> {
      * 债券起息日
      */
     @TableField("BOND_INTEREST_START_DATE")
-    private Date bondInterestStartDate;
+    private String bondInterestStartDate;
     /**
      * 债券认购日
      */
     @TableField("BOND_ISSUE_DATE")
-    private Date bondIssueDate;
+    private String bondIssueDate;
     /**
      * 债券性质
      */
     @TableField("BOND_QUALITY")
     private String bondQuality;
+    /**
+     * 债券等级
+     */
     @TableField("BOND_LEVEL")
     private String bondLevel;
+    /**
+     * 客户类型
+     */
     @TableField("CUSTOMER_TYPE")
     private String customerType;
     /**
@@ -100,20 +112,44 @@ public class TradeInfo extends Model<TradeInfo> {
      */
     @TableField("BANK_ACCOUNT_OPENING")
     private String bankAccountOpening;
+    /**
+     * 银行卡账号
+     */
     @TableField("BANK_ACCOUNT_NUMBER")
     private String bankAccountNumber;
+    /**
+     * 客户姓名
+     */
     @TableField("CUSTOMER_NAME")
     private String customerName;
+    /**
+     * 客户性别
+     */
     @TableField("CUSTOMER_SEX")
     private String customerSex;
+    /**
+     * 客户电话
+     */
     @TableField("CUSTOMER_MOBILE")
     private String customerMobile;
+    /**
+     * 客户邮箱
+     */
     @TableField("CUSTOMER_EMAIL")
     private String customerEmail;
+    /**
+     * 客户地址
+     */
     @TableField("CUSTOMER_ADDRESS")
     private String customerAddress;
+    /**
+     * 客户风险等级
+     */
     @TableField("CUSTOMER_LEVEL")
     private String customerLevel;
+    /**
+     * 托管账号密码
+     */
     @TableField("ACCOUNT_PASSWORD")
     private String accountPassword;
     /**
@@ -126,85 +162,56 @@ public class TradeInfo extends Model<TradeInfo> {
      */
     @TableField("OTHER")
     private String other;
+    /**
+     * 托管账户号
+     */
     @TableField("ACCOUNT_ID")
     private String accountId;
+    /**
+     * 手续费
+     */
     @TableField("SERVICE_FEE")
-    private String serviceFee;
+    private BigDecimal serviceFee;
+    /**
+     * 交易日期
+     */
     @TableField("DATE")
     private String date;
     /**
      * 交易份额
      */
     @TableField("BOND_SHARE")
-    private String bondShare;
+    private BigDecimal bondShare;
     /**
      * 交易金额
      */
     @TableField("BOND_AMOUNT")
-    private String bondAmount;
+    private BigDecimal bondAmount;
     /**
      * 总金额
      */
     @TableField("TOTAL_AMOUNT")
-    private String totalAmount;
-
-    @Override
-    public String toString() {
-        return "TradeInfo{" +
-                "bondCode='" + bondCode + '\'' +
-                ", bondName='" + bondName + '\'' +
-                ", bondEndDate=" + bondEndDate +
-                ", bondRate='" + bondRate + '\'' +
-                ", bondBuyPrice=" + bondBuyPrice +
-                ", bondSellPrice='" + bondSellPrice + '\'' +
-                ", bondPrice=" + bondPrice +
-                ", dayCount='" + dayCount + '\'' +
-                ", bondInterestPeriod='" + bondInterestPeriod + '\'' +
-                ", bondIssuePrice=" + bondIssuePrice +
-                ", bondInterestStartDate=" + bondInterestStartDate +
-                ", bondIssueDate=" + bondIssueDate +
-                ", bondQuality='" + bondQuality + '\'' +
-                ", bondLevel='" + bondLevel + '\'' +
-                ", customerType='" + customerType + '\'' +
-                ", certificateType='" + certificateType + '\'' +
-                ", certificateNo='" + certificateNo + '\'' +
-                ", bankAccountOpening='" + bankAccountOpening + '\'' +
-                ", bankAccountNumber='" + bankAccountNumber + '\'' +
-                ", customerName='" + customerName + '\'' +
-                ", customerSex='" + customerSex + '\'' +
-                ", customerMobile='" + customerMobile + '\'' +
-                ", customerEmail='" + customerEmail + '\'' +
-                ", customerAddress='" + customerAddress + '\'' +
-                ", customerLevel='" + customerLevel + '\'' +
-                ", accountPassword='" + accountPassword + '\'' +
-                ", accountStatus='" + accountStatus + '\'' +
-                ", other='" + other + '\'' +
-                ", accountId='" + accountId + '\'' +
-                ", serviceFee='" + serviceFee + '\'' +
-                ", date='" + date + '\'' +
-                ", bondShare='" + bondShare + '\'' +
-                ", bondAmount='" + bondAmount + '\'' +
-                ", totalAmount='" + totalAmount + '\'' +
-                ", entityId='" + entityId + '\'' +
-                ", entityName='" + entityName + '\'' +
-                ", serviceType='" + serviceType + '\'' +
-                '}';
-    }
-
-    public String getServiceType() {
-        return serviceType;
-    }
-
-    public void setServiceType(String serviceType) {
-        this.serviceType = serviceType;
-    }
-
+    private BigDecimal totalAmount;
+    /**
+     * 机构ID
+     */
     @TableField("ENTITY_ID")
     private String entityId;
+    /**
+     * 机构名称
+     */
     @TableField("ENTITY_NAME")
     private String entityName;
-    @TableField("SERVICE_TYPE")
-    private String serviceType;
+    /**
+     * 交易类型
+     */
+    @TableField("TRADE_TYPE")
+    private String tradeType;
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
 
     public String getBondCode() {
@@ -225,20 +232,20 @@ public class TradeInfo extends Model<TradeInfo> {
         return this;
     }
 
-    public Date getBondEndDate() {
+    public String getBondEndDate() {
         return bondEndDate;
     }
 
-    public TradeInfo setBondEndDate(Date bondEndDate) {
+    public TradeInfo setBondEndDate(String bondEndDate) {
         this.bondEndDate = bondEndDate;
         return this;
     }
 
-    public String getBondRate() {
+    public BigDecimal getBondRate() {
         return bondRate;
     }
 
-    public TradeInfo setBondRate(String bondRate) {
+    public TradeInfo setBondRate(BigDecimal bondRate) {
         this.bondRate = bondRate;
         return this;
     }
@@ -252,11 +259,11 @@ public class TradeInfo extends Model<TradeInfo> {
         return this;
     }
 
-    public String getBondSellPrice() {
+    public BigDecimal getBondSellPrice() {
         return bondSellPrice;
     }
 
-    public TradeInfo setBondSellPrice(String bondSellPrice) {
+    public TradeInfo setBondSellPrice(BigDecimal bondSellPrice) {
         this.bondSellPrice = bondSellPrice;
         return this;
     }
@@ -297,20 +304,20 @@ public class TradeInfo extends Model<TradeInfo> {
         return this;
     }
 
-    public Date getBondInterestStartDate() {
+    public String getBondInterestStartDate() {
         return bondInterestStartDate;
     }
 
-    public TradeInfo setBondInterestStartDate(Date bondInterestStartDate) {
+    public TradeInfo setBondInterestStartDate(String bondInterestStartDate) {
         this.bondInterestStartDate = bondInterestStartDate;
         return this;
     }
 
-    public Date getBondIssueDate() {
+    public String getBondIssueDate() {
         return bondIssueDate;
     }
 
-    public TradeInfo setBondIssueDate(Date bondIssueDate) {
+    public TradeInfo setBondIssueDate(String bondIssueDate) {
         this.bondIssueDate = bondIssueDate;
         return this;
     }
@@ -468,11 +475,11 @@ public class TradeInfo extends Model<TradeInfo> {
         return this;
     }
 
-    public String getServiceFee() {
+    public BigDecimal getServiceFee() {
         return serviceFee;
     }
 
-    public TradeInfo setServiceFee(String serviceFee) {
+    public TradeInfo setServiceFee(BigDecimal serviceFee) {
         this.serviceFee = serviceFee;
         return this;
     }
@@ -486,29 +493,29 @@ public class TradeInfo extends Model<TradeInfo> {
         return this;
     }
 
-    public String getBondShare() {
+    public BigDecimal getBondShare() {
         return bondShare;
     }
 
-    public TradeInfo setBondShare(String bondShare) {
+    public TradeInfo setBondShare(BigDecimal bondShare) {
         this.bondShare = bondShare;
         return this;
     }
 
-    public String getBondAmount() {
+    public BigDecimal getBondAmount() {
         return bondAmount;
     }
 
-    public TradeInfo setBondAmount(String bondAmount) {
+    public TradeInfo setBondAmount(BigDecimal bondAmount) {
         this.bondAmount = bondAmount;
         return this;
     }
 
-    public String getTotalAmount() {
+    public BigDecimal getTotalAmount() {
         return totalAmount;
     }
 
-    public TradeInfo setTotalAmount(String totalAmount) {
+    public TradeInfo setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
         return this;
     }
@@ -531,9 +538,70 @@ public class TradeInfo extends Model<TradeInfo> {
         return this;
     }
 
-    @Override
-    protected Serializable pkVal() {
-        return this.bondCode;
+    public String getTradeType() {
+        return tradeType;
     }
 
+    public TradeInfo setTradeType(String tradeType) {
+        this.tradeType = tradeType;
+        return this;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public TradeInfo setId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
+
+    @Override
+    public String toString() {
+        return "TradeInfo{" +
+                ", bondCode=" + bondCode +
+                ", bondName=" + bondName +
+                ", bondEndDate=" + bondEndDate +
+                ", bondRate=" + bondRate +
+                ", bondBuyPrice=" + bondBuyPrice +
+                ", bondSellPrice=" + bondSellPrice +
+                ", bondPrice=" + bondPrice +
+                ", dayCount=" + dayCount +
+                ", bondInterestPeriod=" + bondInterestPeriod +
+                ", bondIssuePrice=" + bondIssuePrice +
+                ", bondInterestStartDate=" + bondInterestStartDate +
+                ", bondIssueDate=" + bondIssueDate +
+                ", bondQuality=" + bondQuality +
+                ", bondLevel=" + bondLevel +
+                ", customerType=" + customerType +
+                ", certificateType=" + certificateType +
+                ", certificateNo=" + certificateNo +
+                ", bankAccountOpening=" + bankAccountOpening +
+                ", bankAccountNumber=" + bankAccountNumber +
+                ", customerName=" + customerName +
+                ", customerSex=" + customerSex +
+                ", customerMobile=" + customerMobile +
+                ", customerEmail=" + customerEmail +
+                ", customerAddress=" + customerAddress +
+                ", customerLevel=" + customerLevel +
+                ", accountPassword=" + accountPassword +
+                ", accountStatus=" + accountStatus +
+                ", other=" + other +
+                ", accountId=" + accountId +
+                ", serviceFee=" + serviceFee +
+                ", date=" + date +
+                ", bondShare=" + bondShare +
+                ", bondAmount=" + bondAmount +
+                ", totalAmount=" + totalAmount +
+                ", entityId=" + entityId +
+                ", entityName=" + entityName +
+                ", tradeType=" + tradeType +
+                ", id=" + id +
+                "}";
+    }
 }

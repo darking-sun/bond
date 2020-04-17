@@ -28,7 +28,6 @@ public class BondInfoController {
 
     @CrossOrigin
     @RequestMapping(value = "api/queryBondInfo", method = RequestMethod.POST)
-    @ResponseBody
     public Result queryBondInfo(@RequestBody HashMap<String, String> queryData) {
         System.out.println(queryData);
         System.out.println("--------");

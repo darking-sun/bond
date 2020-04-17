@@ -1,132 +1,85 @@
 package com.dev.bond.entity;
 
-import java.io.Serializable;
-
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.activerecord.Model;
-import com.baomidou.mybatisplus.annotations.TableName;
-import java.io.Serializable;
-
 /**
- * <p>
- * 
- * </p>
- *
- * @author wzj123
- * @since 2020-03-16
+ * ---------------------------
+ *  (BondFrozen)
+ * ---------------------------
+ * 作者：  kitty-generator
+ * 时间：  2020-04-16 22:46:40
+ * 说明：  我是由代码生成器生生成的
+ * ---------------------------
  */
-@TableName("bond_frozen")
-public class BondFrozen extends Model<BondFrozen> {
+public class BondFrozen {
 
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * 债券代码
-     */
-    @TableId("BOND_CODE")
+    /** 债券代码 */
     private String bondCode;
-    @TableField("BOND_NAME")
+    /** 债券名称 */
     private String bondName;
-    /**
-     * 债券份额
-     */
-    @TableField("BOND_SHARE")
-    private String bondShare;
-    /**
-     * 债券金额
-     */
-    @TableField("BOND_AMOUNT")
-    private String bondAmount;
-    /**
-     * 托管账户号
-     */
-    @TableField("ACCOUNT_ID")
+    /** 债券份额 */
+    private Double bondShare;
+    /** 债券金额 */
+    private Double bondAmount;
+    /** 托管账户号 */
     private String accountId;
-    @TableField("ENTITY_ID")
+    /** 机构ID */
     private String entityId;
-    @TableField("ENTITY_NAME")
+    /** 机构名称 */
     private String entityName;
-
 
     public String getBondCode() {
         return bondCode;
     }
 
-    public BondFrozen setBondCode(String bondCode) {
+    public void setBondCode(String bondCode) {
         this.bondCode = bondCode;
-        return this;
     }
 
     public String getBondName() {
         return bondName;
     }
 
-    public BondFrozen setBondName(String bondName) {
+    public void setBondName(String bondName) {
         this.bondName = bondName;
-        return this;
     }
 
-    public String getBondShare() {
+    public Double getBondShare() {
         return bondShare;
     }
 
-    public BondFrozen setBondShare(String bondShare) {
+    public void setBondShare(Double bondShare) {
         this.bondShare = bondShare;
-        return this;
     }
 
-    public String getBondAmount() {
+    public Double getBondAmount() {
         return bondAmount;
     }
 
-    public BondFrozen setBondAmount(String bondAmount) {
+    public void setBondAmount(Double bondAmount) {
         this.bondAmount = bondAmount;
-        return this;
     }
 
     public String getAccountId() {
         return accountId;
     }
 
-    public BondFrozen setAccountId(String accountId) {
+    public void setAccountId(String accountId) {
         this.accountId = accountId;
-        return this;
     }
 
     public String getEntityId() {
         return entityId;
     }
 
-    public BondFrozen setEntityId(String entityId) {
+    public void setEntityId(String entityId) {
         this.entityId = entityId;
-        return this;
     }
 
     public String getEntityName() {
         return entityName;
     }
 
-    public BondFrozen setEntityName(String entityName) {
+    public void setEntityName(String entityName) {
         this.entityName = entityName;
-        return this;
     }
 
-    @Override
-    protected Serializable pkVal() {
-        return this.bondCode;
-    }
-
-    @Override
-    public String toString() {
-        return "BondFrozen{" +
-        ", bondCode=" + bondCode +
-        ", bondName=" + bondName +
-        ", bondShare=" + bondShare +
-        ", bondAmount=" + bondAmount +
-        ", accountId=" + accountId +
-        ", entityId=" + entityId +
-        ", entityName=" + entityName +
-        "}";
-    }
 }

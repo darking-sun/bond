@@ -45,17 +45,17 @@ public class OrderRecord  {
      * 债券利率
      */
     @TableField("BOND_RATE")
-    private String bondRate;
+    private BigDecimal bondRate;
     /**
      * 债券买入净价
      */
     @TableField("BOND_BUY_PRICE")
-    private String bondBuyPrice;
+    private BigDecimal bondBuyPrice;
     /**
      * 债券卖出净价
      */
     @TableField("BOND_SELL_PRICE")
-    private String bondSellPrice;
+    private BigDecimal bondSellPrice;
     /**
      * 债券面值
      */
@@ -168,28 +168,44 @@ public class OrderRecord  {
         this.bondEndDate = bondEndDate;
     }
 
-    public String getBondRate() {
+    public BigDecimal getBondRate() {
         return bondRate;
     }
 
-    public void setBondRate(String bondRate) {
+    public void setBondRate(BigDecimal bondRate) {
         this.bondRate = bondRate;
     }
 
-    public String getBondBuyPrice() {
+    public BigDecimal getBondBuyPrice() {
         return bondBuyPrice;
     }
 
-    public void setBondBuyPrice(String bondBuyPrice) {
+    public void setBondBuyPrice(BigDecimal bondBuyPrice) {
         this.bondBuyPrice = bondBuyPrice;
     }
 
-    public String getBondSellPrice() {
+    public BigDecimal getBondSellPrice() {
         return bondSellPrice;
     }
 
-    public void setBondSellPrice(String bondSellPrice) {
+    public void setBondSellPrice(BigDecimal bondSellPrice) {
         this.bondSellPrice = bondSellPrice;
+    }
+
+    public String getBondInterestStartDate() {
+        return bondInterestStartDate;
+    }
+
+    public void setBondInterestStartDate(String bondInterestStartDate) {
+        this.bondInterestStartDate = bondInterestStartDate;
+    }
+
+    public String getBondIssueDate() {
+        return bondIssueDate;
+    }
+
+    public void setBondIssueDate(String bondIssueDate) {
+        this.bondIssueDate = bondIssueDate;
     }
 
     public BigDecimal getBondPrice() {

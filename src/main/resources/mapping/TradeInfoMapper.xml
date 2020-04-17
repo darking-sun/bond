@@ -4,7 +4,8 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.dev.bond.entity.TradeInfo">
-        <id column="BOND_CODE" property="bondCode" />
+        <id column="id" property="id" />
+        <result column="BOND_CODE" property="bondCode" />
         <result column="BOND_NAME" property="bondName" />
         <result column="BOND_END_DATE" property="bondEndDate" />
         <result column="BOND_RATE" property="bondRate" />

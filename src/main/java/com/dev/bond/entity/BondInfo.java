@@ -39,12 +39,12 @@ public class BondInfo extends Model<BondInfo> {
      * 债券买入净价
      */
     @TableField("BOND_BUY_PRICE")
-    private String bondBuyPrice;
+    private BigDecimal bondBuyPrice;
     /**
      * 债券卖出净价
      */
     @TableField("BOND_SELL_PRICE")
-    private String bondSellPrice;
+    private BigDecimal bondSellPrice;
     /**
      * 债券面值
      */
@@ -124,23 +124,7 @@ public class BondInfo extends Model<BondInfo> {
         return this;
     }
 
-    public String getBondBuyPrice() {
-        return bondBuyPrice;
-    }
 
-    public BondInfo setBondBuyPrice(String bondBuyPrice) {
-        this.bondBuyPrice = bondBuyPrice;
-        return this;
-    }
-
-    public String getBondSellPrice() {
-        return bondSellPrice;
-    }
-
-    public BondInfo setBondSellPrice(String bondSellPrice) {
-        this.bondSellPrice = bondSellPrice;
-        return this;
-    }
 
     public BigDecimal getBondPrice() {
         return bondPrice;
@@ -235,6 +219,22 @@ public class BondInfo extends Model<BondInfo> {
     @Override
     protected Serializable pkVal() {
         return this.bondCode;
+    }
+
+    public BigDecimal getBondBuyPrice() {
+        return bondBuyPrice;
+    }
+
+    public void setBondBuyPrice(BigDecimal bondBuyPrice) {
+        this.bondBuyPrice = bondBuyPrice;
+    }
+
+    public BigDecimal getBondSellPrice() {
+        return bondSellPrice;
+    }
+
+    public void setBondSellPrice(BigDecimal bondSellPrice) {
+        this.bondSellPrice = bondSellPrice;
     }
 
     @Override

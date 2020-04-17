@@ -28,7 +28,6 @@ public class EnumController {
     private IEnumService enumService;
     @CrossOrigin
     @RequestMapping(value = "api/getServiceFee", method = RequestMethod.GET)
-    @ResponseBody
     public HashMap<String, Object> queryFee(@RequestParam(name = "enumName") String enumName){
         System.out.println(enumName);
         HashMap<String,Object> map = new HashMap<>();
@@ -129,10 +128,9 @@ public class EnumController {
 
     @CrossOrigin
     @RequestMapping(value = "api/queryServiceFee" ,method = RequestMethod.POST)
-    @ResponseBody
-    public Result getService (@RequestBody HashMap<String,String> json){
-        String enumType = json.get("enumType");
-        Enum serviceObjct = enumService.selectOne(new EntityWrapper<Enum>().eq("ENUM_TYPE", enumType));
+    public Result getService (@RequestBody HashMap<String,String> hashMap){
+        String enumType = hashMap.get("enumType");
+        Enum serviceObjct = enumService.selectOne(new EntityWrapper<Enum>().eq("ENUM_TYPE", enumType).eq("ENUM_NAME", "serviceFee"));
         String enumValue = serviceObjct.getEnumValue();
         return new Result(200,"获取成功",enumValue);
     }

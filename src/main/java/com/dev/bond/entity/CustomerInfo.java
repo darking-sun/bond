@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * <p>
@@ -30,7 +31,7 @@ public class CustomerInfo extends Model<CustomerInfo> implements Cloneable{
     /**
      * 证件号码
      */
-    @TableId("CERTIFICATE_NO")
+    @TableField("CERTIFICATE_NO")
     private String certificateNo;
     /**
      * 银行卡账户类型
@@ -63,10 +64,10 @@ public class CustomerInfo extends Model<CustomerInfo> implements Cloneable{
      */
     @TableField("OTHER")
     private String other;
-    @TableField("ACCOUNT_ID")
+    @TableId("ACCOUNT_ID")
     private String accountId;
     @TableField("SERVICE_FEE")
-    private String serviceFee;
+    private BigDecimal serviceFee;
     @TableField("DATE")
     private String date;
 
@@ -206,13 +207,12 @@ public class CustomerInfo extends Model<CustomerInfo> implements Cloneable{
         return this;
     }
 
-    public String getServiceFee() {
+    public BigDecimal getServiceFee() {
         return serviceFee;
     }
 
-    public CustomerInfo setServiceFee(String serviceFee) {
+    public void setServiceFee(BigDecimal serviceFee) {
         this.serviceFee = serviceFee;
-        return this;
     }
 
     public String getDate() {
@@ -226,7 +226,7 @@ public class CustomerInfo extends Model<CustomerInfo> implements Cloneable{
 
     @Override
     protected Serializable pkVal() {
-        return this.certificateNo;
+        return this.accountId;
     }
 
     @Override

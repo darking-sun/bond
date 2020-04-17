@@ -1,12 +1,12 @@
 package com.dev.bond.entity;
 
-import java.io.Serializable;
-
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * <p>
@@ -100,7 +100,7 @@ public class CustomerInfoHistory extends Model<CustomerInfoHistory> {
      * 手续费
      */
     @TableField("SERVICE_FEE")
-    private String serviceFee;
+    private BigDecimal serviceFee;
     /**
      * 时间
      */
@@ -243,13 +243,12 @@ public class CustomerInfoHistory extends Model<CustomerInfoHistory> {
         return this;
     }
 
-    public String getServiceFee() {
+    public BigDecimal getServiceFee() {
         return serviceFee;
     }
 
-    public CustomerInfoHistory setServiceFee(String serviceFee) {
+    public void setServiceFee(BigDecimal serviceFee) {
         this.serviceFee = serviceFee;
-        return this;
     }
 
     public String getDate() {
